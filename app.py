@@ -1,7 +1,8 @@
 from flask import Flask
+
 from db_config import engine
 from blueprints import Base
-from blueprints.auth import routes, login_manager, LoginForm
+from blueprints.auth import routes, login_manager
 import os
 
 app = Flask(__name__)

@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from sqlalchemy import String, Column, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, EqualTo, Email
 
 from blueprints import Base
 from flask_login import LoginManager
@@ -46,6 +46,14 @@ class LoginForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('Log In')
+
+class RegistrationForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+    username = StringField('username', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), Email()])
+    password = PasswordField('password', validators=[DataRequired()])
+    confirm_password = PasswordField('confirm_password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign up')
 
 @login_manager.user_loader
 def load_user(user_id):

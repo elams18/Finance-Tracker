@@ -9,14 +9,29 @@
     {% if title == 'Login' %} <h3>Sign In<h3>
         {% else %} <h3>Sign up</h3>
         {% endif %}
-    <form method="POST" action="{{ url_for("auth.login_page") }}">
-    {{ form.csrf_token }}
-    {{ error }}
-    <p>
-        {{ form.username.label }}: {{ form.username(class_="form-control form-control-lg") }}<br>
-        {{ form.password.label }}: {{ form.password(class_="form-control form-control-lg") }}
-    </p>
-    {{ form.submit(class="btn btn-outline-info") }}
-</form>
+    {% if title == 'Login' %}
+        <form method="POST" action="{{ url_for("auth.login_page") }}">
+            {{ form.csrf_token }}
+            {{ error }}
+            <p>
+                {{ form.username.label }}: {{ form.username(class_="form-control form-control-lg") }}<br>
+                {{ form.password.label }}: {{ form.password(class_="form-control form-control-lg") }}
+            </p>
+            {{ form.submit(class="btn btn-outline-info") }}
+        </form>
+    {% else %}
+        <form method="POST" action="{{ url_for("auth.register_page") }}">
+            {{ form.csrf_token }}
+            {{ error }}
+            <p>
+                {{ form.name.label }}: {{ form.name(class_="form-control form-control-lg") }}<br>
+                {{ form.username.label }}: {{ form.username(class_="form-control form-control-lg") }}<br>
+                {{ form.email.label }}: {{ form.email(class_="form-control form-control-lg") }}<br>
+                {{ form.password.label }}: {{ form.password(class_="form-control form-control-lg") }}<br>
+                {{ form.confirm_password.label }}: {{ form.confirm_password(class_="form-control form-control-lg") }}
+            </p>
+            {{ form.submit(class="btn btn-outline-info") }}
+        </form>
+    {% endif %}
 </body>
 </html>
