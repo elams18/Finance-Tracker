@@ -5,7 +5,7 @@ from sqlalchemy import String, Column, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Email
-
+from werkzeug.security import check_password_hash
 from blueprints import Base
 from flask_login import LoginManager
 
@@ -34,7 +34,7 @@ class UserAccount(Base):
     def check_password(self, password):
         if not self.is_authenticated:
             return False
-        if self.hashed_password == password:
+        if check_password_hash(self.hashed_password, password):
             return True
         return False
 
@@ -58,3 +58,32 @@ class RegistrationForm(FlaskForm):
 @login_manager.user_loader
 def load_user(user_id):
     return UserAccount.get(user_id)
+
+def url_has_allowed_host_and_scheme(url, allowed_hosts, require_https=False):
+    """
+    Return ``True`` if the url uses an allowed host and a safe scheme.
+
+    Always return ``False`` on an empty url.
+
+    If ``require_https`` is ``True``, only 'https' will be considered a valid
+    scheme, as opposed to 'http' and 'https' with the default, ``False``.
+
+    Note: "True" doesn't entail that a URL is "safe". It may still be e.g.
+    quoted incorrectly. Ensure to also use django.utils.encoding.iri_to_uri()
+    on the path component of untrusted URLs.
+    """
+    if url is not None:
+        url = url.strip()
+    if not url:
+        return False
+    if allowed_hosts is None:
+        allowed_hosts = set()
+    elif isinstance(allowed_hosts, str):
+        allowed_hosts = {allowed_hosts}
+    # Chrome treats \ completely as / in paths but it could be part of some
+    # basic auth credentials so we need to check both URLs.
+    return (
+        _url_has_allowed_host_and_scheme(url, allowed_hosts, require_https=require_https) and
+        _url_has_allowed_host_and_scheme(url.replace('\\', '/'), allowed_hosts, require_https=require_https)
+    )
+
