@@ -32,11 +32,7 @@ class UserAccount(Base):
         return str(self.id)
 
     def check_password(self, password):
-        if not self.is_authenticated:
-            return False
-        if check_password_hash(self.hashed_password, password):
-            return True
-        return False
+        return check_password_hash(self.hashed_password, password)
 
     @classmethod
     def get(cls, user_id):

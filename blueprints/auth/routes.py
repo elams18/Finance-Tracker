@@ -18,15 +18,17 @@ def login_page():
 
     if form.validate_on_submit():
         username = form.username.data
-        password = generate_password_hash(form.password.data)
-        user = UserAccount(username=username) # need to write this as an actual query executor
-        if user is None or not user.check_password(password):
-            return render_template('auth/index.html', title='Login', error='Invalid username or password', form=form)
+        password = form.password.data
+        user_query = session.query(UserAccount).filter_by(username=username) # need to write this as an actual query executor
+        with session.execute(user_query) as user_results:
+            user = user_results.first()
+            if user is None or (len(user) == 1 and not user[0].check_password(password)):
+                return render_template('auth/index.html', title='Login', error='Invalid username or password', form=form)
 
         # business logic done, now to check authentication
         load_user(user)
 
-        # next = request.args.get('next')
+        next = request.args.get('next')
         # if not url_has_allowed_host_and_scheme(next, request.host):
         #     return flask.abort(400)
 
@@ -40,18 +42,25 @@ def register_page():
         return render_template('auth/index.html', title='Register', form=form)
 
     if form.validate_on_submit():
-        user = UserAccount(username=form.username)
-        if not user.get_id() == 'None':
-            error = 'User already exists'
-            return render_template('auth/index.html', title='Register', form=form, error=error)
+        user_query = session.query(UserAccount).filter_by(username=form.username.data)
+
+        with session.execute(user_query) as user_results:
+            user_result = user_results.fetchall()
+            if user_result:
+                error = 'User already exists'
+                return render_template('auth/index.html', title='Register', form=form, error=error)
+
+        # if not user.get_id() == 'None':
+        #     error = 'User already exists'
+        #     return render_template('auth/index.html', title='Register', form=form, error=error)
 
         if form.password.data != form.confirm_password.data or not form.confirm_password:
             error = 'Passwords must match'
             return render_template('auth/index.html', title='Register', form=form, error=error)
 
         name = form.name.data
-        username = generate_password_hash(form.username.data)
-        password = form.password.data
+        username = form.username.data
+        password = generate_password_hash(form.password.data)
         email = form.email.data
 
 

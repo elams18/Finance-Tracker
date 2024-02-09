@@ -1,37 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-white">
 <head>
     <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+{#    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">#}
+    <link href="static/output.css" rel="stylesheet">
     <title>{{ title }}</title>
 </head>
-<body>
-    <h2>Welcome to {{ title }} Page</h2>
-    {% if title == 'Login' %} <h3>Sign In<h3>
-        {% else %} <h3>Sign up</h3>
-        {% endif %}
-    {% if title == 'Login' %}
-        <form method="POST" action="{{ url_for("auth.login_page") }}">
-            {{ form.csrf_token }}
-            {{ error }}
-            <p>
-                {{ form.username.label }}: {{ form.username(class_="form-control form-control-lg") }}<br>
-                {{ form.password.label }}: {{ form.password(class_="form-control form-control-lg") }}
-            </p>
-            {{ form.submit(class="btn btn-outline-info") }}
-        </form>
-    {% else %}
-        <form method="POST" action="{{ url_for("auth.register_page") }}">
-            {{ form.csrf_token }}
-            {{ error }}
-            <p>
-                {{ form.name.label }}: {{ form.name(class_="form-control form-control-lg") }}<br>
-                {{ form.username.label }}: {{ form.username(class_="form-control form-control-lg") }}<br>
-                {{ form.email.label }}: {{ form.email(class_="form-control form-control-lg") }}<br>
-                {{ form.password.label }}: {{ form.password(class_="form-control form-control-lg") }}<br>
-                {{ form.confirm_password.label }}: {{ form.confirm_password(class_="form-control form-control-lg") }}
-            </p>
-            {{ form.submit(class="btn btn-outline-info") }}
-        </form>
-    {% endif %}
+<body class="h-full">
+    <div class="flex w-72 h-72">
+        <h2>Login and start profiting</h2>
+    </div>
 </body>
 </html>
