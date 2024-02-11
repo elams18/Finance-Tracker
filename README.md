@@ -12,10 +12,10 @@
    7. Forgot Password - Add as another user story
    
    ### Screenshots
-![Screenshot 2024-02-11 at 9.56.44 PM.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fpq%2Fg0c0pc095ls90sy9bwb8g2ww0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_aP9nhq%2FScreenshot%202024-02-11%20at%209.56.44%E2%80%AFPM.png)
-![Screenshot 2024-02-11 at 9.57.03 PM.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fpq%2Fg0c0pc095ls90sy9bwb8g2ww0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_r1JeVy%2FScreenshot%202024-02-11%20at%209.57.03%E2%80%AFPM.png)
-![Screenshot 2024-02-11 at 9.57.33 PM.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fpq%2Fg0c0pc095ls90sy9bwb8g2ww0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_SefDZt%2FScreenshot%202024-02-11%20at%209.57.33%E2%80%AFPM.png)
-![Screenshot 2024-02-11 at 9.58.15 PM.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fpq%2Fg0c0pc095ls90sy9bwb8g2ww0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_qjUhhg%2FScreenshot%202024-02-11%20at%209.58.15%E2%80%AFPM.png)
+![Screenshot 2024-02-11 at 10.06.17 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.17 PM.png)
+![Screenshot 2024-02-11 at 10.06.27 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.27 PM.png)
+![Screenshot 2024-02-11 at 10.06.39 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.39 PM.png)
+![Screenshot 2024-02-11 at 10.06.47 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.47 PM.png)
 
 2. ### User has to create a timesheet with expense
    1. Create expense model with many to one mapping with user
