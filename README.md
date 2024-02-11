@@ -12,10 +12,10 @@
    7. Forgot Password - Add as another user story
    
    ### Screenshots
-![Screenshot 2024-02-11 at 10.06.17 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.17 PM.png)
-![Screenshot 2024-02-11 at 10.06.27 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.27 PM.png)
-![Screenshot 2024-02-11 at 10.06.39 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.39 PM.png)
-![Screenshot 2024-02-11 at 10.06.47 PM.png](screenshots/Screenshot 2024-02-11 at 10.06.47 PM.png)
+![Login Page (Web)](screenshots/Screenshot 2024-02-11 at 10.06.17 PM.png)
+![Login Page (Mobile)](screenshots/Screenshot 2024-02-11 at 10.06.27 PM.png)
+![Register Page (Web)](screenshots/Screenshot 2024-02-11 at 10.06.39 PM.png)
+![Register Page (Mobile)](screenshots/Screenshot 2024-02-11 at 10.06.47 PM.png)
 
 2. ### User has to create a timesheet with expense
    1. Create expense model with many to one mapping with user
