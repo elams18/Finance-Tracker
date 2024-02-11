@@ -12,10 +12,10 @@
    7. Forgot Password - Add as another user story
    
    ### Screenshots
-![Login Page (Web)](screenshots/Screenshot 2024-02-11 at 10.06.17 PM.png)
-![Login Page (Mobile)](screenshots/Screenshot 2024-02-11 at 10.06.27 PM.png)
-![Register Page (Web)](screenshots/Screenshot 2024-02-11 at 10.06.39 PM.png)
-![Register Page (Mobile)](screenshots/Screenshot 2024-02-11 at 10.06.47 PM.png)
+![Login Page (Web)](https://github.com/elams18/Finance-Tracker/blob/218149289535c76f9319c95404a5c48076292fa2/screenshots/Screenshot%202024-02-11%20at%2010.06.17%E2%80%AFPM.png)
+![Login Page (Mobile)](https://github.com/elams18/Finance-Tracker/blob/218149289535c76f9319c95404a5c48076292fa2/screenshots/Screenshot%202024-02-11%20at%2010.06.27%E2%80%AFPM.png)
+![Register Page (Web)](https://github.com/elams18/Finance-Tracker/blob/218149289535c76f9319c95404a5c48076292fa2/screenshots/Screenshot%202024-02-11%20at%2010.06.39%E2%80%AFPM.png)
+![Register Page (Mobile)](https://github.com/elams18/Finance-Tracker/blob/218149289535c76f9319c95404a5c48076292fa2/screenshots/Screenshot%202024-02-11%20at%2010.06.47%E2%80%AFPM.png)
 
 2. ### User has to create a timesheet with expense
    1. Create expense model with many to one mapping with user
