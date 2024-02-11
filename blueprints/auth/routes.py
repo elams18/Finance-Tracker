@@ -1,5 +1,5 @@
 import uuid
-
+import json
 from flask import Blueprint, render_template, redirect, request
 from db_config import session
 
@@ -33,6 +33,9 @@ def login_page():
         #     return flask.abort(400)
 
         return redirect(next or "/")
+    else:
+        error = form.errors
+        return render_template('auth/index.html', title='Login', error=error, form=form)
 
 
 @auth.route('/register', methods=['POST', "GET"])
@@ -78,3 +81,7 @@ def register_page():
             return render_template('auth/index.html', title='Register', form=form, error=error)
 
         return redirect("/")
+
+    else:
+        error = form.errors
+        return render_template('auth/index.html', title='Login', error=error, form=form)
