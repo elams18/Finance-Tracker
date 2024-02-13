@@ -1,5 +1,6 @@
 import uuid
 
+from flask import redirect, url_for
 from flask_wtf import FlaskForm
 from sqlalchemy import String, Column, Boolean
 from sqlalchemy.dialects.postgresql import UUID
@@ -54,6 +55,12 @@ class RegistrationForm(FlaskForm):
 @login_manager.user_loader
 def load_user(user_id):
     return UserAccount.get(user_id)
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    # do stuff
+    form = LoginForm()
+    return redirect(url_for('auth.login_page'))
 
 def url_has_allowed_host_and_scheme(url, allowed_hosts, require_https=False):
     """

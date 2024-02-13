@@ -1,6 +1,6 @@
 import uuid
 import json
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, redirect, request, url_for
 from db_config import session
 
 from blueprints.auth import LoginForm, RegistrationForm, UserAccount, load_user
@@ -32,7 +32,7 @@ def login_page():
         # if not url_has_allowed_host_and_scheme(next, request.host):
         #     return flask.abort(400)
 
-        return redirect(next or "/")
+        return redirect(next or url_for('expense.get_expenses'))
     else:
         error = form.errors
         return render_template('auth/index.html', title='Login', error=error, form=form)
@@ -80,7 +80,7 @@ def register_page():
             error = 'Error creating user'
             return render_template('auth/index.html', title='Register', form=form, error=error)
 
-        return redirect("/")
+        return redirect(url_for('expense.get_expenses'))
 
     else:
         error = form.errors
