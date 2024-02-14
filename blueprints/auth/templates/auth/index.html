@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 {#    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">#}
-    <link href="static/output.css" rel="stylesheet">
+    <link href={{ url_for('static', filename='output.css') }} rel="stylesheet">
     <title>{{ title }}</title>
 </head>
 <body class="flex flex-col h-full bg-gray-800 items-center justify-center p-2 mx-auto gap-10">

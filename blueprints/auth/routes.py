@@ -2,7 +2,7 @@ import uuid
 import json
 from flask import Blueprint, render_template, redirect, request, url_for
 from db_config import session
-
+from flask_login import login_user, logout_user
 from blueprints.auth import LoginForm, RegistrationForm, UserAccount, load_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -27,12 +27,13 @@ def login_page():
 
         # business logic done, now to check authentication
         load_user(user)
+        check = login_user(user[0], True)
 
         next = request.args.get('next')
         # if not url_has_allowed_host_and_scheme(next, request.host):
         #     return flask.abort(400)
 
-        return redirect(next or url_for('expense.get_expenses'))
+        return redirect(url_for('expense.get_expenses'), code=302)
     else:
         error = form.errors
         return render_template('auth/index.html', title='Login', error=error, form=form)

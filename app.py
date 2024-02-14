@@ -13,7 +13,7 @@ app.config['WTF_CSRF_SECRET_KEY'] = os.environ.get('WTF_CSRF_SECRET_KEY')
 
 app.register_blueprint(routes.auth, url_prefix='/auth')
 from blueprints.expense import routes
-app.register_blueprint(routes.expense, url_prefix='/expenses')
+app.register_blueprint(routes.expense, url_prefix='/expense')
 
 
 
