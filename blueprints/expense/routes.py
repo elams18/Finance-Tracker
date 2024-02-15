@@ -1,9 +1,9 @@
-from flask import Blueprint, request
-from flask_login import login_required
+from flask import Blueprint, request, render_template
+from flask_login import login_required, current_user
 
 from blueprints.expense import Expense
 from db_config import session
-from blueprints.auth import login_manager, load_user
+from blueprints.auth import UserAccount
 
 expense = Blueprint('expense', __name__, template_folder='templates', static_folder='static')
 
@@ -14,4 +14,4 @@ def get_expenses():
     if request.method == 'GET':
         expenses_query = session.query(Expense)
         with session.execute(expenses_query) as expenses:
-            return 'Expenses', expenses.all()
+            return render_template('expense/index.html', expenses=expenses.all(), title="Expense", username=current_user.username)

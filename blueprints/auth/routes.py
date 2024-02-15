@@ -26,7 +26,9 @@ def login_page():
                 return render_template('auth/index.html', title='Login', error='Invalid username or password', form=form)
 
         # business logic done, now to check authentication
-        load_user(user)
+        user[0].is_authenticated = True
+        session.commit()
+        load_user(user[0].id)
         check = login_user(user[0], True)
 
         next = request.args.get('next')
@@ -85,4 +87,4 @@ def register_page():
 
     else:
         error = form.errors
-        return render_template('auth/index.html', title='Login', error=error, form=form)
+        return render_template('auth/index.html', title='Register', error=error, form=form)

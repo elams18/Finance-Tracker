@@ -9,6 +9,7 @@ from wtforms.validators import DataRequired, EqualTo, Email
 from werkzeug.security import check_password_hash
 from blueprints import Base
 from flask_login import LoginManager
+from db_config import session
 
 login_manager = LoginManager()
 
@@ -54,7 +55,10 @@ class RegistrationForm(FlaskForm):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return UserAccount.get(user_id)
+    user = session.execute(session.query(UserAccount).filter(UserAccount.id==user_id)).fetchone()[0]
+    if user and user.is_authenticated:
+        return user
+    return None
 
 @login_manager.unauthorized_handler
 def unauthorized():

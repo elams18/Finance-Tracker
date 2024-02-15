@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full bg-white">
-<head>
-    <meta charset="UTF-8">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-{#    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">#}
-    <link href={{ url_for('static', filename='output.css') }} rel="stylesheet">
-    <title>{{ title }}</title>
-</head>
-<body class="flex flex-col h-full bg-gray-800 items-center justify-center p-2 mx-auto gap-10">
+{% include 'head.html' %}
+<body class="flex flex-col h-full bg-violet-300 dark:bg-[#492C4D] items-center justify-center p-2 mx-auto gap-10">
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">{{ title }} to your account</h2>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-[#E6D1E8]">{{ title }} to your account</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -20,7 +12,7 @@
     <form class="space-y-6" action="{{ url_for("auth.login_page") }}" method="POST">
         {{ form.csrf_token }}
       <div>
-        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Username / Email</label>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-[#E6D1E8]">Username / Email</label>
         <div class="mt-2">
           {{ form.username(class="input-class") }}
         </div>
@@ -28,9 +20,9 @@
 
       <div>
         <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900 dark:text-[#E6D1E8]">Password</label>
           <div class="text-sm">
-            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500 dark: text-[#E6D1E8]">Forgot password?</a>
           </div>
         </div>
         <div class="mt-2">
@@ -39,7 +31,7 @@
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center button-class">Sign in</button>
+        <button type="submit" class="flex w-full justify-center button-class dark:bg-[#E6D1E8]">Sign in</button>
       </div>
     </form>
       {% else %}
@@ -47,30 +39,30 @@
           {{ form.csrf_token }}
 
         <div>
-        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-[#E6D1E8]">Name</label>
         <div class="mt-3.5 mb-2">
           {{ form.name(class="input-class") }}
         </div>
         <div>
-        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-[#E6D1E8]">Username</label>
         <div class="mt-3.5 mb-2">
           {{ form.username(class="input-class") }}
         </div>
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+            <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-[#E6D1E8]">Email</label>
         <div class="mt-3.5 mb-2">
           {{ form.email(class="input-class") }}
         </div>
-             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+             <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-[#E6D1E8]">Password</label>
         <div class="mt-3.5 mb-2">
           {{ form.password(class="input-class") }}
         </div>
-             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
+             <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-[#E6D1E8]">Confirm Password</label>
         <div class="mt-3.5 mb-2">
           {{ form.confirm_password(class="input-class") }}
         </div>
             <div>
-        <div class="mt-5">
-            <button type="submit" class="flex w-full justify-center button-class">Sign up</button>
+        <div class="mt-10">
+            <button type="submit" class="flex w-full justify-center button-class dark:bg-[#E6D1E8]">Sign up</button>
         </div>
       </div>
       </div>
@@ -78,11 +70,11 @@
     {% endif %}
     <p class="mt-10 text-center text-sm text-gray-500">
       {% if title == 'Login' %}Not a member?
-        <a href="{{ url_for("auth.register_page") }}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Sign up and start profiting</a>
+        <a href="{{ url_for("auth.register_page") }}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 dark:text-[#E6D1E8]">Sign up and start profiting</a>
         <label for="password" class="block text-sm font-medium leading-6 text-gray-900 text-red-400">{{ error }}</label>
         {% else %}
           Already a member?
-        <a href="{{ url_for("auth.login_page") }}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Login and start profiting</a>
+        <a href="{{ url_for("auth.login_page") }}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 dark:text-[#E6D1E8]">Login and start profiting</a>
         {% endif %}
     </p>
   </div>
