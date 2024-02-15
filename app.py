@@ -26,7 +26,7 @@ def initialize():  # put application's code here
     return 'done'
 
 
-css = Bundle('main.css', output='dist/main.css', filters='postcss')
+css = Bundle('main.css', output='main.css', filters='postcss')
 assets = Environment(app)
 assets.register('main_css', css)
 css.build()
