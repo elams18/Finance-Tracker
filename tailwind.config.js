@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        bree: ['Bree Serif', ...defaultTheme.fontFamily.sans],
       }
     },
   },

@@ -3,9 +3,11 @@
 {% include 'head.html' %}
 <body class="bg-[]">
 {% include 'expense/toppanel.html' %}
-<ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+<div class="flex flex-row">
+{% include 'expense/sidebar.html' %}
+{% include 'expense/body.html' %}
 
-</ul>
+</div>
 
 </body>
 </html>
