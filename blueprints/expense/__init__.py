@@ -33,11 +33,8 @@ class Expense(Base):
     exp_description = Column(String, nullable=True)
     exp_created_at = Column(DateTime, nullable=False)
     exp_updated_at = Column(DateTime, nullable=False)
-    exp_type = Column(Integer, default=ExpenseType.Food, nullable=False,
-                      choices=ExpenseType.__members__)
-    exp_status = Column(String, default=ExpensePaymentType.NORMAL, nullable=False,
-                        choices=ExpensePaymentStatus.__members__)
-    exp_payment_status = Column(String, default=ExpensePaymentStatus.PENDING, nullable=False,
-                                choices=ExpensePaymentStatus.__members__)
+    exp_type = Column(Integer, default=ExpenseType.Food, nullable=False)
+    exp_status = Column(String, default=ExpensePaymentType.NORMAL, nullable=False)
+    exp_payment_status = Column(String, default=ExpensePaymentStatus.PENDING, nullable=False)
 
     expense_user = Column(UUID, ForeignKey('user_account.id'), nullable=False)
