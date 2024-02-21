@@ -1,10 +1,9 @@
 import uuid
-import json
 from flask import Blueprint, render_template, redirect, request, url_for
 from db_config import session
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 from blueprints.auth import LoginForm, RegistrationForm, UserAccount, load_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 
 auth = Blueprint(
     'auth', __name__, template_folder='templates', static_folder='static'
@@ -88,3 +87,10 @@ def register_page():
     else:
         error = form.errors
         return render_template('auth/index.html', title='Register', error=error, form=form)
+
+@login_required
+@auth.route('/logout')
+def logout():
+    user = logout_user()
+    if user is not None:
+        return redirect(url_for('auth.login_page'))

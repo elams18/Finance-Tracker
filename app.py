@@ -3,7 +3,7 @@ from flask_assets import Bundle, Environment
 
 from flask_migrate import Migrate
 
-from flask import Manager
+# from flask import Manager
 from blueprints import Base, db
 from blueprints.auth import routes, login_manager
 import os

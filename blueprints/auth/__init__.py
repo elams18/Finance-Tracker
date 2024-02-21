@@ -55,9 +55,9 @@ class RegistrationForm(FlaskForm):
 
 @login_manager.user_loader
 def load_user(user_id):
-    user = session.execute(session.query(UserAccount).filter(UserAccount.id==user_id)).fetchone()[0]
-    if user and user.is_authenticated:
-        return user
+    user = session.execute(session.query(UserAccount).filter(UserAccount.id==user_id)).fetchone()
+    if user and user[0].is_authenticated:
+        return user[0]
     return None
 
 @login_manager.unauthorized_handler
