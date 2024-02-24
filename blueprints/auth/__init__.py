@@ -2,30 +2,28 @@ import uuid
 
 from flask import redirect, url_for
 from flask_wtf import FlaskForm
-from sqlalchemy import String, Column, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 from wtforms.fields.simple import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Email
 from werkzeug.security import check_password_hash
-from blueprints import Base
+from app import db
+
 from flask_login import LoginManager
-from db_config import session
 
 login_manager = LoginManager()
 
-
-class UserAccount(Base):
+class UserAccount(db.Model):
     __tablename__ = 'user_account'
 
-    id = Column(UUID, primary_key=True, default=uuid.uuid4)
-    name = Column(String, nullable=False)
-    username = Column(String, nullable=False)
-    hashed_password = Column(String, nullable=False)
-    email = Column(String, nullable=False)
+    id = db.Column(UUID, primary_key=True, default=uuid.uuid4)
+    name = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False)
+    hashed_password = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
 
-    is_authenticated = Column(Boolean, default=False)
-    is_active = Column(Boolean, default=True)
-    is_anonymous = Column(Boolean, default=False)
+    is_authenticated = db.Column(db.Boolean, default=False)
+    is_active = db.Column(db.Boolean, default=True)
+    is_anonymous = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return f"Username: {self.username!r} ID: {self.id!r}"
@@ -55,9 +53,9 @@ class RegistrationForm(FlaskForm):
 
 @login_manager.user_loader
 def load_user(user_id):
-    user = session.execute(session.query(UserAccount).filter(UserAccount.id==user_id)).fetchone()
-    if user and user[0].is_authenticated:
-        return user[0]
+    user = UserAccount.query.filter_by(id=user_id).first()
+    if user and user.is_authenticated:
+        return user
     return None
 
 @login_manager.unauthorized_handler

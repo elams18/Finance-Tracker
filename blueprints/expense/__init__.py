@@ -1,10 +1,8 @@
 import enum
 import uuid
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
-from blueprints import Base
-
-class Expense(Base):
+from app import db
+class Expense(db.Model):
     __tablename__ = 'expense'
 
     class ExpenseType(enum.IntEnum):
@@ -28,13 +26,13 @@ class Expense(Base):
         NORMAL = "NORMAL"
         IMMEDIATE = "IMMEDIATE"
 
-    exp_id = Column(UUID, primary_key=True, default=uuid.uuid4)
-    exp_name = Column(String, nullable=False)
-    exp_description = Column(String, nullable=True)
-    exp_created_at = Column(DateTime, nullable=False)
-    exp_updated_at = Column(DateTime, nullable=False)
-    exp_type = Column(Integer, default=ExpenseType.Food, nullable=False)
-    exp_status = Column(String, default=ExpensePaymentType.NORMAL, nullable=False)
-    exp_payment_status = Column(String, default=ExpensePaymentStatus.PENDING, nullable=False)
+    exp_id = db.Column(UUID, primary_key=True, default=uuid.uuid4)
+    exp_name = db.Column(db.String, nullable=False)
+    exp_description = db.Column(db.String, nullable=True)
+    exp_created_at = db.Column(db.Date, nullable=False)
+    exp_updated_at = db.Column(db.Date, nullable=False)
+    exp_type = db.Column(db.Integer, default=ExpenseType.Food, nullable=False)
+    exp_status = db.Column(db.String, default=ExpensePaymentType.NORMAL, nullable=False)
+    exp_payment_status = db.Column(db.String, default=ExpensePaymentStatus.PENDING, nullable=False)
 
-    expense_user = Column(UUID, ForeignKey('user_account.id'), nullable=False)
+    expense_user = db.Column(UUID, db.ForeignKey('user_account.id'), nullable=False)

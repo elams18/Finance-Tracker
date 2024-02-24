@@ -1,26 +1,26 @@
 from flask import Flask, redirect, url_for
 from flask_assets import Bundle, Environment
-
+from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 # from flask import Manager
-from blueprints import Base, db
-from blueprints.auth import routes, login_manager
 import os
 
 app = Flask(__name__)
-app.config['SESSION_TYPE'] = 'memcached'
-app.config['SECRET_KEY'] = 'super secret key'
+app.config['SESSION_TYPE'] = os.environ.get('SESSION_TYPE', 'memcached')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['WTF_CSRF_SECRET_KEY'] = os.environ.get('WTF_CSRF_SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.environ.get('POSTGRES_USER')}:{os.environ.get('POSTGRES_PASSWORD')}@{os.environ.get('POSTGRES_HOST')}:{os.environ.get('POSTGRES_PORT')}/{os.environ.get('POSTGRES_DB')}"
+db = SQLAlchemy()
+from blueprints.auth import routes, login_manager
+
 app.register_blueprint(routes.auth, url_prefix='/auth')
 from blueprints.expense import routes
 app.register_blueprint(routes.expense, url_prefix='/expense')
 
 with app.app_context():
-    db.init_app(app=app)
-    db.create_all()
-    app.migrate = Migrate(app)
+    db.init_app(app)
+    migrate = Migrate(app, db)
 
 
 login_manager.init_app(app)
