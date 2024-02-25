@@ -27,8 +27,9 @@ class Expense(db.Model):
         IMMEDIATE = "IMMEDIATE"
 
     exp_id = db.Column(UUID, primary_key=True, default=uuid.uuid4)
-    exp_name = db.Column(db.String, nullable=False)
+    exp_title = db.Column(db.String, nullable=False)
     exp_description = db.Column(db.String, nullable=True)
+    exp_amount = db.Column(db.Float, nullable=False)
     exp_created_at = db.Column(db.Date, nullable=False)
     exp_updated_at = db.Column(db.Date, nullable=False)
     exp_type = db.Column(db.Integer, default=ExpenseType.Food, nullable=False)

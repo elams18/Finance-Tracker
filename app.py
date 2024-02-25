@@ -21,6 +21,7 @@ app.register_blueprint(routes.expense, url_prefix='/expense')
 with app.app_context():
     db.init_app(app)
     migrate = Migrate(app, db)
+    migrate.init_app(app)
 
 
 login_manager.init_app(app)
