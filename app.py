@@ -39,6 +39,12 @@ from blueprints.expense import expense
 app.register_blueprint(expense, url_prefix="/expense")
 
 
+@app.route("/", methods=["GET"])
+def default_link_reroute():
+    print("came here")
+    return redirect(url_for("auth.login_page"), code=302)
+
+
 with app.app_context():
     db.init_app(app)
     migrate = Migrate(app, db)
