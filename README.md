@@ -1,5 +1,7 @@
 # Finance Tracker
 
+## App live [here](https://finance-tracker-oboq.onrender.com)
+
 ## User stories:
 
 1. ### User has to log in/sign up when they open the application

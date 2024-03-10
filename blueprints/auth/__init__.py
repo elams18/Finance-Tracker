@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask import redirect, url_for
+from sqlalchemy.sql.functions import random
 
 from flask_login import LoginManager
 import uuid
@@ -12,6 +13,7 @@ from wtforms.fields.simple import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Email
 from werkzeug.security import check_password_hash
 from config import db
+from blueprints.auth.utils import send_verification_mail
 
 login_manager = LoginManager()
 
@@ -155,7 +157,8 @@ def register_page():
             return render_template(
                 "auth/index.html", title="Register", form=form, error=error
             )
-
+        send_mail = send_verification_mail(created_user.get_id(), email)
+        print(send_mail.content)
         return redirect(url_for("expense.get_expenses"))
 
     else:
